@@ -41,11 +41,11 @@ namespace LoginGoogle
             FacebookOptions.AppId = "4398183950223941";
             FacebookOptions.AppSecret = "2830e4531ed603c39c91e4b1ff8d230b";
         })
-        //.AddGoogle(GoogleOptions =>
-        //{
-        //    GoogleOptions.ClientId = "964979486722-239v33obu42ahv39bk38ipdmu2bm2s7e.apps.googleusercontent.com";
-        //    GoogleOptions.ClientSecret = "gD80sHyScTdc6udYUytP87p2";
-        //})
+        .AddGoogle(GoogleOptions =>
+        {
+            GoogleOptions.ClientId = "964979486722-qgicb9v6hljom571395d53cmb48ncaba.apps.googleusercontent.com";
+            GoogleOptions.ClientSecret = "tLApzEZycEa-fcWwWf1WertZ";
+        })
         .AddCookie();
         services.AddControllersWithViews();
         }
