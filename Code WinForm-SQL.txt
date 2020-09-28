@@ -1,0 +1,74 @@
+CREATE DATABASE mydb;
+USE mydb;
+CREATE TABLE mytable ( id INT PRIMARY KEY, name VARCHAR(20) );
+INSERT INTO mytable VALUES ( 1, 'Will' );
+INSERT INTO mytable VALUES ( 2, 'Marry' );
+INSERT INTO mytable VALUES ( 3, 'Dean' );
+SELECT id, name FROM mytable WHERE id = 1;
+UPDATE mytable SET name = 'Willy' WHERE id = 1;
+SELECT id, name FROM mytable;
+DELETE FROM mytable WHERE id = 1;
+SELECT id, name FROM mytable;
+DROP DATABASE mydb;
+SELECT count(1) from mytable; gives the number of records in the table
+---------------------------------------------------------------------------
+**Load Data to Data Grid View:
+            SqlConnection con = new SqlConnection(cn);
+            SqlCommand sqlCmd = new SqlCommand("select DIEM.MaSV,TenSV,MONHOC.TenMH,HocKy,DiemQT,DiemThi from SINHVIEN, DIEM, MONHOC where Diem.MaSV = SINHVIEN.MaSV and MONHOC.MaMH = DIEM.MaMH;", con);
+            SqlDataAdapter sqlDataAdap = new SqlDataAdapter(sqlCmd);
+            DataTable dtRecord = new DataTable();
+            sqlDataAdap.Fill(dtRecord);
+            dtg_Data.DataSource = dtRecord;
+**Cell Click DataGridView:
+            dtg_Data.CurrentCell.Selected = true;
+            tb_masv.Text = dtg_Data.Rows[e.RowIndex].Cells["MaSV"].FormattedValue.ToString();
+            tb_tensv.Text = dtg_Data.Rows[e.RowIndex].Cells["TenSV"].FormattedValue.ToString();
+            tb_tenmh.Text = dtg_Data.Rows[e.RowIndex].Cells["TenMH"].FormattedValue.ToString();
+            tb_diemhocky.Text = dtg_Data.Rows[e.RowIndex].Cells["Hocky"].FormattedValue.ToString();
+            tb_diemqt.Text = dtg_Data.Rows[e.RowIndex].Cells["DiemQT"].FormattedValue.ToString();
+            tb_diemthi.Text = dtg_Data.Rows[e.RowIndex].Cells["DiemThi"].FormattedValue.ToString();
+**Thêm SQL
+            SqlConnection cm = new SqlConnection(cn);
+            cm.Open();
+            SqlCommand cmd = new SqlCommand("Insert Into DIEM values ('" + tb_masv.Text + "','" + MaMH_text + "','" + tb_diemhocky.Text + "','" + tb_diemqt.Text + "','" + tb_diemthi.Text + "');", cm);
+            SqlDataReader dta = cmd.ExecuteReader();
+            MessageBox.Show("Ð? thêm thành công!", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            cm.Close();
+**S?a SQL
+            SqlConnection cm = new SqlConnection(cn);
+            cm.Open();
+            SqlCommand cmd = new SqlCommand("update DIEM set HocKy = '" + diemhk + "', DiemQT = '" + diemqt + "', DiemThi='" + diemthi + "' where DIEM.MaSV = '" + MaSV_text + "' and DIEM.MaMH = '" + MaMH_text + "';", cm);
+            SqlDataReader dta = cmd.ExecuteReader();
+            MessageBox.Show("S?a thành công!", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            cm.Close();
+            load_data(); 
+**Xóa SQL
+	    SqlConnection cm = new SqlConnection(cn);
+            cm.Open();
+            SqlCommand cmd = new SqlCommand("Delete From DIEM where DIEM.MaSV = '" + MaSV_text + "' and DIEM.MaMH = '" + MaMH_text + "';", cm);
+            SqlDataReader dta = cmd.ExecuteReader();
+            MessageBox.Show("Xóa thành công!", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            cm.Close();
+            load_data();
+**L?y String t? SQL
+            string kq;
+            SqlConnection cm = new SqlConnection(cn);
+            cm.Open();
+            SqlCommand cmd = new SqlCommand("Select MaMH From MONHOC where TenMH = N'"+MaMH+"'", cm);
+            SqlDataReader dta = cmd.ExecuteReader();
+            dta.Read();
+            kq = dta.GetString(0).ToString();
+            return kq;
+**Check SQL
+	    SqlConnection cm = new SqlConnection(cn);
+            cm.Open();
+            SqlCommand cmd = new SqlCommand("Select * From DIEM where MaMH = '"+MaMH+"' and MaSV = '"+MaSV+"'", cm);
+            SqlDataReader dta = cmd.ExecuteReader();
+            if (dta.Read() == true) return true;
+            else return false;
+**Thoat:
+	    DialogResult dr = MessageBox.Show("B?n có mu?n thoát không?", "Thoát", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (dr == DialogResult.OK)
+            {
+                this.Close();
+            }
