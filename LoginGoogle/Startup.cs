@@ -36,7 +36,8 @@ namespace LoginGoogle
             option.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
             option.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
             option.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-        }).AddFacebook(FacebookOptions =>
+        })
+            .AddFacebook(FacebookOptions =>
         {
             FacebookOptions.AppId = "4398183950223941";
             FacebookOptions.AppSecret = "2830e4531ed603c39c91e4b1ff8d230b";
