@@ -4,62 +4,114 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - LoginWithAPI</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link href="~/css/now-ui-dashboard.css" rel="stylesheet" />
+    <link href="~/demo/demo.css" rel="stylesheet" />
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">LoginWithAPI</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
+        <div class="wrapper ">
+            <div class="sidebar" data-color="blue">
+                <div class="logo">
+                    <a href="http://www.creative-tim.com" class="simple-text logo-mini">
+                        CT
+                    </a>
+                    <a class="simple-text logo-normal" asp-area="" asp-controller="Home" asp-action="Index">LoginWithAPI</a>
+                </div>
+                <div class="sidebar-wrapper" id="sidebar-wrapper">
+                    <ul class="nav">
+                        <li class="active ">
+                            <a href="#">
+                                <i class="now-ui-icons design_app"></i>
+                                <p>Dashboard</p>
+                            </a>
+                        </li>
                         @if (User.Identity.IsAuthenticated)
                         {
-                            <li class="nav-item">
-                                <a class="nav-link" asp-controller="Auth" asp-action="SignOut">Sign Out</a>
+                            <li >
+                                <a asp-controller="Auth" asp-action="SignOut">
+                                    <i class="now-ui-icons users_single-02"></i>
+                                    Logout
+                                </a>
                             </li>
                         }
                         else
                         {
-                            <li class="nav-item">
-                                <a class="nav-link" asp-controller="Auth" asp-action="Login">Login with API</a>
+                            <li>
+                                <a asp-controller="Auth" asp-action="Login">
+                                    <i class="now-ui-icons users_single-02"></i>
+                                    Login
+                                </a>
                             </li>
                         }
                     </ul>
                 </div>
             </div>
-        </nav>
-        <div class="container body-content">  
-            @if (User.Identity.IsAuthenticated)
-            {
-                <h1>Welcome @User.Identity.Name</h1>
-            }else
-            {
-                <h1>You are not loged in</h1>
-                <form asp-action="Auth" asp-controller="NormalLogin">
-                    <input name="User_Account" placeholder="Account (6-20 character)"/>
-                    <input name="User_Password" placeholder="Password (6-20 character)"/>
-                    <input type="submit" value="Normal Login"/>
-                </form>
-            }
-            @RenderBody()
-            </hr>
-        </div>
-    </header>
+            <div class="main-panel" id="main-panel">
+                <nav class="navbar navbar-expand-lg navbar-transparent  bg-primary  navbar-absolute">
+                    <div class="container-fluid">
+                        <div class="navbar-wrapper">
+                            <div class="navbar-toggle">
+                                <button type="button" class="navbar-toggler">
+                                    <span class="navbar-toggler-bar bar1"></span>
+                                    <span class="navbar-toggler-bar bar2"></span>
+                                    <span class="navbar-toggler-bar bar3"></span>
+                                </button>
+                            </div>
+                            <a class="navbar-brand" href="#">Dashboard</a>
+                        </div>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <form asp-controller="Weather" asp-action="GetWeatherInfo" method="post">
+                                <div class="input-group no-border">
+                                    <input name="City" type="text" value="" class="form-control" placeholder="Search country...">
+                                    <div class="input-group-append">
+                                        <div class="input-group-text">
+                                            <i class="now-ui-icons ui-1_zoom-bold"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        }
+                        else
+                        {
+                        }
+                    </div>
+                </nav>
+                <div class="panel-header panel-header-sm">
+                </div>
+                <div class="content">
+                    @RenderBody()
+                </div>
+</header>
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2020 - LoginWithAPI - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    <footer class="footer">
+        <div class=" container-fluid ">
+            <nav>
+                <ul>
+                    <li>
+                        <a href="#">
+                            Nhóm ABC XYZ
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="copyright" id="copyright">
+                &copy;
+                <script>
+                    document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))
+                </script>, Designed by <a href="#" target="_blank">Invision</a>. Coded by <a href="#" target="_blank">LMT</a>.
+            </div>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
@@ -68,3 +120,11 @@
     @RenderSection("Scripts", required: false)
 </body>
 </html>
+<script src="~/js/core/jquery.min.js"></script>
+<script src="~/js/core/popper.min.js"></script>
+<script src="~/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+<script src="~/js/core/bootstrap.min.js"></script>
+<script src="~/js/plugins/chartjs.min.js"></script>
+<script src="~/js/plugins/bootstrap-notify.js" ></script>
+<script src="~/js/now-ui-dashboard.js" type="text/javascript"></script>
+<script src="~/demo/demo.js"></script>

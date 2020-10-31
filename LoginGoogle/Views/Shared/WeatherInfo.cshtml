@@ -1,0 +1,134 @@
+﻿<div class="content">
+    <div class="row">
+        @if (@ViewBag.Flag == 0)
+        {
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="title">Weather Info</h5>
+                    </div>
+                    <div class="card-body">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-5 pr-1">
+                                    <div class="form-group">
+                                        <label>Temperature</label>
+                                        <input type="text" class="form-control" disabled="" value="@ViewBag.Temp °C">
+                                    </div>
+                                </div>
+                                <div class="col-md-3 px-1">
+                                    <div class="form-group">
+                                        <label>Temperature Min</label>
+                                        <input type="text" class="form-control" disabled="" value="@ViewBag.TempMin °C">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 pl-1">
+                                    <div class="form-group">
+                                        <label>Temperature Max</label>
+                                        <input type="text" class="form-control" disabled="" value="@ViewBag.TempMax °C">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 pr-1">
+                                    <div class="form-group">
+                                        <label>Country Name</label>
+                                        <input type="text" disabled="" class="form-control" value="@ViewBag.CountryName">
+                                    </div>
+                                </div>
+                                <div class="col-md-6 pl-1">
+                                    <div class="form-group">
+                                        <label>Name</label>
+                                        <input type="text" disabled="" class="form-control" value="@ViewBag.Name">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Weather Description</label>
+                                        <input type="text" disabled="" class="form-control" value="@ViewBag.Weather">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 pr-1">
+                                    <div class="form-group">
+                                        <label>Wind Speed (m/s)</label>
+                                        <input type="text" disabled="" class="form-control" value="@ViewBag.WindSpeed m/s">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 px-1">
+                                    <div class="form-group">
+                                        <label>Clound (%)</label>
+                                        <input type="text" disabled="" class="form-control" value="@ViewBag.Clound %">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 pl-1">
+                                    <div class="form-group">
+                                        <label>Timezone (UTC)</label>
+                                        <input type="text" disabled="" class="form-control" value="@ViewBag.Timezone UTC">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-user">
+                    <div class="image">
+                        <img src="https://lh3.googleusercontent.com/proxy/lEoB6T2eKt7SOH7nmGTK1pYZ6FzxR5EEFeqSHurOogQTC7g_17JQNeB8zjR0vl62irKD0I_2Uj1kf6DnmbAyHjOQiZNFMW_RwTcna0qIbwgjrnuJyNf3-qsjQ0qKw937KMj44ziDnD754t0" style="width:100%;height:100%" alt="...">
+                    </div>
+                    <div class="card-body">
+                        <div class="author">
+                            <a>
+                                <img style="background-color:dimgrey" class="avatar border-gray" src="@ViewBag.LinkIcon" alt="..." />
+                                <h5 class="title">@ViewBag.Name</h5>
+                            </a>
+                            <p class="description">
+                                <img src="@ViewBag.CountryFlag" style="width:50px;height:25px" /> <br>
+                                lon: @ViewBag.X -  lat: @ViewBag.Y
+                            </p>
+                        </div>
+                        <p class="description text-center">
+                            @ViewBag.WeatherMin <br>
+                            @ViewBag.Temp °C <br>
+                        </p>
+                    </div>
+                    <hr>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="card ">
+                    <div class="card-header ">
+                        Google Maps
+                    </div>
+                    <div class="card-body ">
+                        <div id="map" class="map"></div>
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="col-md-12">
+                <div class="card">
+                    <h1> Error: City not found</h1>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<script>
+    let map;
+
+    function initMap() {
+        map = new google.maps.Map(document.getElementById("map"), {
+            center: { lat: @ViewBag.Y, lng: @ViewBag.X },
+            zoom: 8,
+        });
+    }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAo46XYggwHfAJzdlpTQa4cl85ltW3WFkg&callback=initMap"
+        async defer></script>

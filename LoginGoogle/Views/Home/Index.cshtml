@@ -1,8 +1,54 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-
-<div class="text-center">
-    <h1 class="display-4">Demo ASP .NET CORE MVC Web API</h1>
-    <p>NHÓM 14.</p>
+@model IEnumerable<City>
+<div class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title"> List of City</h4>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead class=" text-primary">
+                            <th>
+                                ID
+                            </th>
+                            <th>
+                                Name
+                            </th>
+                            <th>
+                                Country
+                            </th>
+                            <th>
+                                Coord
+                            </th>
+                            </thead>
+                            <tbody>
+                                @foreach (var city in Model)
+                                {
+                                <tr>
+                                    <td>
+                                        @city.Id
+                                    </td>
+                                    <td>
+                                        @city.Name
+                                    </td>
+                                    <td>
+                                        @city.Country
+                                    </td>
+                                    <td>
+                                        @city.coord.lon : @city.coord.lat
+                                    </td>
+                                </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

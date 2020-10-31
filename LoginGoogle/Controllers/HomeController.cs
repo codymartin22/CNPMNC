@@ -8,6 +8,12 @@ using Microsoft.Extensions.Logging;
 using LoginGoogle.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
+using System.IO;
+using Newtonsoft.Json;
+using System.Net;
+using Newtonsoft.Json.Linq;
+using Microsoft.AspNetCore.Http.Features;
+using Nancy.Json;
 
 namespace LoginGoogle.Controllers
 {
@@ -22,7 +28,12 @@ namespace LoginGoogle.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            using (StreamReader r = new StreamReader(@"D:\RepoVS2019\LoginGoogle\LoginGoogle\CityData\city.list.json"))
+            {
+                string json = r.ReadToEnd();
+                List<City> cityList = JsonConvert.DeserializeObject<List<City>>(json);
+                return View(cityList);
+            }
         }
         public IActionResult Privacy()
         {
