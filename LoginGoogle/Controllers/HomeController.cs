@@ -14,6 +14,11 @@ using System.Net;
 using Newtonsoft.Json.Linq;
 using Microsoft.AspNetCore.Http.Features;
 using Nancy.Json;
+using X.PagedList.Mvc;
+using X.PagedList;
+using X.PagedList.Web;
+using System.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
 
 namespace LoginGoogle.Controllers
 {
@@ -25,14 +30,21 @@ namespace LoginGoogle.Controllers
         {
             _logger = logger;
         }
-
-        public IActionResult Index()
+        public IActionResult Index(string search, int? page)
         {
-            using (StreamReader r = new StreamReader(@"D:\RepoVS2019\LoginGoogle\LoginGoogle\CityData\city.list.json"))
+            using (StreamReader r = new StreamReader(@"CityData\city.list.json"))
             {
                 string json = r.ReadToEnd();
                 List<City> cityList = JsonConvert.DeserializeObject<List<City>>(json);
-                return View(cityList);
+                if (search == null)
+                {
+                    return View(cityList.ToPagedList(page ?? 1, 50));
+                }
+                else
+                {
+                    return View(cityList.Where(x => x.Name.ToLower().Contains(search.ToLower())).ToPagedList());
+                }
+
             }
         }
         public IActionResult Privacy()
@@ -45,5 +57,6 @@ namespace LoginGoogle.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
     }
 }

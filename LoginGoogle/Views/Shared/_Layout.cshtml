@@ -1,9 +1,10 @@
-﻿<!DOCTYPE html>
+﻿@using System.Security.Claims 
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - LoginWithAPI</title>
+    <title>LoginWithAPI</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
@@ -12,6 +13,9 @@
     <link rel="stylesheet" href="~/css/site.css" />
     <link href="~/css/now-ui-dashboard.css" rel="stylesheet" />
     <link href="~/demo/demo.css" rel="stylesheet" />
+    <namespaces>
+        <add namespace="PagedList.Mvc" />
+    </namespaces>
 </head>
 <body>
     <header>
@@ -63,20 +67,31 @@
                                     <span class="navbar-toggler-bar bar3"></span>
                                 </button>
                             </div>
-                            <a class="navbar-brand" href="#">Dashboard</a>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <a class="navbar-brand">
+                                    Hello @User.Identity.Name, Your ID: @User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value
+                                </a>
+                            }
+                            else
+                            {
+                                <a class="navbar-brand">You are not Login</a>
+                            }
                         </div>
                         @if (User.Identity.IsAuthenticated)
                         {
-                            <form asp-controller="Weather" asp-action="GetWeatherInfo" method="post">
-                                <div class="input-group no-border">
-                                    <input name="City" type="text" value="" class="form-control" placeholder="Search country...">
-                                    <div class="input-group-append">
-                                        <div class="input-group-text">
-                                            <i class="now-ui-icons ui-1_zoom-bold"></i>
-                                        </div>
-                                    </div>
+                    <form asp-controller="Weather" asp-action="GetWeatherInfo" method="post">
+                        <label>Search by Cityname</label>
+                        <div class="input-group no-border">
+                            <input name="City" type="text" value="" class="form-control" placeholder="Search country...">
+                            <label name="IDUser" hidden="hidden">@User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value</label>
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <i class="now-ui-icons ui-1_zoom-bold"></i>
                                 </div>
-                            </form>
+                            </div>
+                        </div>
+                    </form>
                         }
                         else
                         {
@@ -107,6 +122,9 @@
                 </ul>
             </nav>
             <div class="copyright" id="copyright">
+                <br>
+                <br>
+                <br>
                 &copy;
                 <script>
                     document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))

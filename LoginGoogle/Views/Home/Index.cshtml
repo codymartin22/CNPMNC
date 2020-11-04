@@ -1,7 +1,28 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-@model IEnumerable<City>
+@using X.PagedList;
+@using X.PagedList.Mvc;
+@using X.PagedList.Mvc.Core;
+@model X.PagedList.IPagedList<City>
+<style>
+        .pagination li {
+            color: black;
+            float: left;
+            padding: 8px 16px;
+            text-decoration: none;
+        }
+        .pagination li.active {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .pagination li:hover:not(.active) {
+            background-color: #ddd;
+        }
+        .pagination li.active {
+            border-radius: 5px;
+        }
+</style>
 <div class="content">
     <div class="row">
         <div class="col-md-12">
@@ -27,25 +48,39 @@
                             </th>
                             </thead>
                             <tbody>
+                                <tr>
+                                    @using (Html.BeginForm("Index", "Home", FormMethod.Get))
+                                    {
+                                        <div class="input-group no-border">
+                                            <input name="search" type="text" value="" class="form-control" placeholder="Search City...">
+                                            <div class="input-group-append">
+                                                <div class="input-group-text">
+                                                    <i class="now-ui-icons ui-1_zoom-bold"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                </tr>
                                 @foreach (var city in Model)
                                 {
-                                <tr>
-                                    <td>
-                                        @city.Id
-                                    </td>
-                                    <td>
-                                        @city.Name
-                                    </td>
-                                    <td>
-                                        @city.Country
-                                    </td>
-                                    <td>
-                                        @city.coord.lon : @city.coord.lat
-                                    </td>
-                                </tr>
+                                    <tr>
+                                        <td>
+                                            @city.Id
+                                        </td>
+                                        <td>
+                                            @city.Name
+                                        </td>
+                                        <td>
+                                            @city.Country
+                                        </td>
+                                        <td>
+                                            @city.coord.lon : @city.coord.lat
+                                        </td>
+                                    </tr>
                                 }
                             </tbody>
                         </table>
+                        @Html.PagedListPager(Model, page => Url.Action("Index", "Home", new { page }))
                     </div>
                 </div>
             </div>
