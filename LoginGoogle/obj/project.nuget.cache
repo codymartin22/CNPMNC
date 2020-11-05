@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "jnPwuD1lEXc2hGokxOM0vFnQaGCdG+oiAFJo1uNIENvExefgi82AEtW9hDlpZp1XqU23eMlA4CFwd1n7i4C4iQ==",
+  "dgSpecHash": "HnN3CjSPv+meRpgKgrSy1/04XSJlHs6ts295YX/IXld2Lqh5BJsJKHiAAMJnv5ZcP+cbT4bOvJdekmWs1QuQ1A==",
   "success": true,
   "projectFilePath": "D:\\RepoVS2019\\LoginGoogle\\LoginGoogle\\LoginGoogle.csproj",
   "expectedPackageFiles": [
@@ -105,6 +105,8 @@
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\runtime.win-x64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\runtime.win-x86.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x86.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
+    "C:\\Users\\ADMIN\\.nuget\\packages\\selenium.chrome.webdriver\\85.0.0\\selenium.chrome.webdriver.85.0.0.nupkg.sha512",
+    "C:\\Users\\ADMIN\\.nuget\\packages\\selenium.webdriver\\3.141.0\\selenium.webdriver.3.141.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.appcontext\\4.3.0\\system.appcontext.4.3.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.buffers\\4.5.0\\system.buffers.4.5.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.collections\\4.3.0\\system.collections.4.3.0.nupkg.sha512",

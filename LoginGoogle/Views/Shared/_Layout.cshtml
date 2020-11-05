@@ -48,7 +48,7 @@
                         {
                             <li>
                                 <a asp-controller="Auth" asp-action="Login">
-                                    <i class="now-ui-icons users_single-02"></i>
+                                    <i id="LoginButton"class="now-ui-icons users_single-02"></i>
                                     Login
                                 </a>
                             </li>
@@ -83,7 +83,7 @@
                     <form asp-controller="Weather" asp-action="GetWeatherInfo" method="post">
                         <label>Search by Cityname</label>
                         <div class="input-group no-border">
-                            <input name="City" type="text" value="" class="form-control" placeholder="Search country...">
+                            <input id ="SearchText"name="City" type="text" value="" class="form-control" placeholder="Search country...">
                             <label name="IDUser" hidden="hidden">@User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value</label>
                             <div class="input-group-append">
                                 <div class="input-group-text">
@@ -122,8 +122,7 @@
                 </ul>
             </nav>
             <div class="copyright" id="copyright">
-                <br>
-                <br>
+                <a class="simple-text logo-normal" asp-area="" asp-controller="Selenium" asp-action="GoSelenium">Go Selenium</a>
                 <br>
                 &copy;
                 <script>

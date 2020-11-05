@@ -37,7 +37,7 @@
                         {
                             foreach (var item in Model)
                             {
-                                <a class="btn btn-primary login-button" asp-action="SignIn" asp-route-provider="@item">Login with @item</a>
+                                <a id="@item" class="btn btn-primary login-button" asp-action="SignIn" asp-route-provider="@item">Login with @item</a>
                             }
                         }
                     </div>
