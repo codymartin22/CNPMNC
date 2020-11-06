@@ -2,44 +2,74 @@
     <div class="row">
         @if (@ViewBag.Flag == 0)
         {
-            <div class="col-md-8">
+            <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">
-                        <h5 class="title">Weather Info</h5>
+                    <div class="card-header"  style="background-color:grey">
+                        <h5 class="title">Weather of @ViewBag.Name <img src="@ViewBag.CountryFlag" disabled="" style="width:40px;height:40px" value="@ViewBag.CountryName" /></h5>
                     </div>
                     <div class="card-body">
                         <form>
                             <div class="row">
-                                <div class="col-md-5 pr-1">
+                                <div class="col-md-3 pr-1">
                                     <div class="form-group">
                                         <label id="TemperatureLB">Temperature</label>
                                         <input type="text" class="form-control" disabled="" value="@ViewBag.Temp °C">
                                     </div>
                                 </div>
-                                <div class="col-md-3 px-1">
+                                <div class="col-md-2 px-1">
                                     <div class="form-group">
                                         <label>Temperature Min</label>
                                         <input type="text" class="form-control" disabled="" value="@ViewBag.TempMin °C">
                                     </div>
                                 </div>
-                                <div class="col-md-4 pl-1">
+                                <div class="col-md-2 px-1">
                                     <div class="form-group">
                                         <label>Temperature Max</label>
                                         <input type="text" class="form-control" disabled="" value="@ViewBag.TempMax °C">
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6 pr-1">
+                                <div class="col-md-2 px-1">
                                     <div class="form-group">
-                                        <label>Country Name</label>
-                                        <input type="text" disabled="" class="form-control" value="@ViewBag.CountryName">
+                                        <label>Humidity</label>
+                                        <input type="text" class="form-control" disabled="" value="@ViewBag.Humi %">
                                     </div>
                                 </div>
-                                <div class="col-md-6 pl-1">
+                                <div class="col-md-3 pl-1">
                                     <div class="form-group">
-                                        <label>Name</label>
+                                        <label>Atmospheric pressure</label>
+                                        <input type="text" class="form-control" disabled="" value="@ViewBag.Pressure hPa">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2 pr-1">
+                                    <div class="form-group">
+                                        <label>Country Name</label>
+                                        <input type="text" disabled="" class="form-control" value="@ViewBag.CountryName" />
+                                    </div>
+                                </div>
+                                <div class="col-md-3 pl-1">
+                                    <div class="form-group">
+                                        <label>City Name</label>
                                         <input type="text" disabled="" class="form-control" value="@ViewBag.Name">
+                                    </div>
+                                </div>
+                                <div class="col-md-2 pl-1">
+                                    <div class="form-group">
+                                        <label>Longitude</label>
+                                        <input type="text" disabled="" class="form-control" value="@ViewBag.X">
+                                    </div>
+                                </div>
+                                <div class="col-md-2 pl-1">
+                                    <div class="form-group">
+                                        <label>Latitude</label>
+                                        <input type="text" disabled="" class="form-control" value="@ViewBag.Y">
+                                    </div>
+                                </div>
+                                <div class="col-md-3 pl-1">
+                                    <div class="form-group">
+                                        <label>Timezone (UTC)</label>
+                                        <input type="text" disabled="" class="form-control" value="@ViewBag.Timezone UTC">
                                     </div>
                                 </div>
                             </div>
@@ -60,14 +90,14 @@
                                 </div>
                                 <div class="col-md-4 px-1">
                                     <div class="form-group">
-                                        <label>Clound (%)</label>
-                                        <input type="text" disabled="" class="form-control" value="@ViewBag.Clound %">
+                                        <label>Wind Direction (°)</label>
+                                        <input type="text" disabled="" class="form-control" value="@ViewBag.WindDeg °">
                                     </div>
                                 </div>
                                 <div class="col-md-4 pl-1">
                                     <div class="form-group">
-                                        <label>Timezone (UTC)</label>
-                                        <input type="text" disabled="" class="form-control" value="@ViewBag.Timezone UTC">
+                                        <label> Cloudiness (%)</label>
+                                        <input type="text" disabled="" class="form-control" value="@ViewBag.Clound %">
                                     </div>
                                 </div>
                             </div>
@@ -75,37 +105,13 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="card card-user">
-                    <div class="image">
-                        <img src="https://lh3.googleusercontent.com/proxy/lEoB6T2eKt7SOH7nmGTK1pYZ6FzxR5EEFeqSHurOogQTC7g_17JQNeB8zjR0vl62irKD0I_2Uj1kf6DnmbAyHjOQiZNFMW_RwTcna0qIbwgjrnuJyNf3-qsjQ0qKw937KMj44ziDnD754t0" style="width:100%;height:100%" alt="...">
-                    </div>
-                    <div class="card-body">
-                        <div class="author">
-                            <a>
-                                <img style="background-color:dimgrey" class="avatar border-gray" src="@ViewBag.LinkIcon" alt="..." />
-                                <h5 class="title">@ViewBag.Name</h5>
-                            </a>
-                            <p class="description">
-                                <img src="@ViewBag.CountryFlag" style="width:50px;height:25px" /> <br>
-                                lon: @ViewBag.X -  lat: @ViewBag.Y
-                            </p>
-                        </div>
-                        <p class="description text-center">
-                            @ViewBag.WeatherMin <br>
-                            @ViewBag.Temp °C <br>
-                        </p>
-                    </div>
-                    <hr>
-                </div>
-            </div>
             <div class="col-md-12">
                 <div class="card ">
                     <div class="card-header ">
                         Google Maps
                     </div>
-                    <div class="card-body ">
-                        <div id="map" class="map"></div>
+                    <div class="card-body">
+                        <div id="mapid"></div>
                     </div>
                 </div>
             </div>
@@ -120,15 +126,17 @@
         }
     </div>
 </div>
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
 <script>
-    let map;
+        var mymap = L.map('mapid').setView([@ViewBag.Y, @ViewBag.X], 9);
 
-    function initMap() {
-        map = new google.maps.Map(document.getElementById("map"), {
-            center: { lat: @ViewBag.Y, lng: @ViewBag.X },
-            zoom: 15,
-        });
-    }
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(mymap);
+
+        var marker = L.marker([@ViewBag.Y, @ViewBag.X]).addTo(mymap);
+
+    marker.bindPopup('<img style="background-color:dimgrey" src="@ViewBag.LinkIcon" alt="..." /><br><b>@ViewBag.Name</b><br> @ViewBag.WeatherMin <br>@ViewBag.Temp °C <br>').openPopup();
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgn2MowGm69GKkgNvClTrxCCx16_m_4VY&callback=initMap"
-        async defer></script>

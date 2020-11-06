@@ -103,7 +103,6 @@ D:\RepoVS2019\LoginGoogle\LoginGoogle\bin\Debug\netcoreapp3.1\runtimes\win\lib\n
 D:\RepoVS2019\LoginGoogle\LoginGoogle\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
 D:\RepoVS2019\LoginGoogle\LoginGoogle\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 D:\RepoVS2019\LoginGoogle\LoginGoogle\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-D:\RepoVS2019\LoginGoogle\LoginGoogle\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Index.cshtml.g.cs
 D:\RepoVS2019\LoginGoogle\LoginGoogle\obj\Debug\netcoreapp3.1\Razor\Views\Auth\UserInfo.cshtml.g.cs
 D:\RepoVS2019\LoginGoogle\LoginGoogle\bin\Debug\netcoreapp3.1\WebDriver.dll
 D:\RepoVS2019\LoginGoogle\LoginGoogle\obj\Debug\netcoreapp3.1\LoginGoogle.csproj.CoreCompileInputs.cache

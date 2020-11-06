@@ -16,6 +16,9 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.Authentication.Facebook;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using System.Net;
+using LoginGoogle.FaceBook;
+using FacebookHandler = LoginGoogle.FaceBook.FacebookHandler;
 
 namespace LoginGoogle
 { }
@@ -39,8 +42,11 @@ namespace LoginGoogle
         })
             .AddFacebook(FacebookOptions =>
         {
-            FacebookOptions.AppId = "4398183950223941";
-            FacebookOptions.AppSecret = "2830e4531ed603c39c91e4b1ff8d230b";
+            FacebookOptions.AppId = "800906787369681";
+            FacebookOptions.AppSecret = "409cb0482e3252b3005e19e2bd7253b3";
+            FacebookOptions.BackchannelHttpHandler = new FacebookHandler();
+            FacebookOptions.UserInformationEndpoint = "https://graph.facebook.com/v8.0/me?fields=id,name,picture";
+            FacebookOptions.Scope.Add("email");
         })
         .AddGoogle(GoogleOptions =>
         {
@@ -54,16 +60,16 @@ namespace LoginGoogle
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
-            }
+        if (env.IsDevelopment())
+        {
+            app.UseDeveloperExceptionPage();
+        }
+        else
+        {
+            app.UseExceptionHandler("/Home/Error");
+            // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+            app.UseHsts();
+        }
             app.UseAuthentication();
 
             app.UseHttpsRedirection();

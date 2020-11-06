@@ -41,24 +41,5 @@ namespace LoginGoogle.Controllers
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return RedirectToAction("Index", "Home");
         }
-        public IActionResult GetFaceBookInfo()
-        {
-            WebClient client = new WebClient();
-            client.Proxy.Credentials = CredentialCache.DefaultNetworkCredentials;
-            var data = client.DownloadString("https://graph.facebook.com/oauth/access_token?grant_type=fb_exchange_token&client_id=4398183950223941&client_secret=2830e4531ed603c39c91e4b1ff8d230b&fb_exchange_token=EAAZBgIAACikUBAKd5khJy0EbNzKoRKEBbZCfCZABLYR6UoQUNi4bZAVhjlfZCZC023d0ljSqEZAZBluoki3VomgD59fovZAZBrnvRWtjJTeZC6txhDDbDTd4qm0cZAtdyGFrvdfljZA68nQYH9IlceLUuZCgoxxO0KOblVYVUQZCFr6GJByPQZDZD");
-            string token = data.Remove(0, 17);
-            token = token.Remove(token.Length - 45);
-            ViewBag.Data = token;
-            WebClient client1 = new WebClient();
-            var data1 = client1.DownloadString("https://graph.facebook.com/v8.0/me?fields=id%2Cname%2Cpicture%2Clink&access_token="+token+"");
-            User datauser = JsonConvert.DeserializeObject<User>(data1);
-            ViewBag.Data0 = datauser.name;
-            ViewBag.Data1 = datauser.link;
-            ViewBag.Data2 = datauser.id;
-            ViewBag.Data3 = datauser.picture.data.url;
-            ViewBag.H = datauser.picture.data.height;
-            ViewBag.W = datauser.picture.data.width;
-            return View("UserInfo");
-        }
     }
 }

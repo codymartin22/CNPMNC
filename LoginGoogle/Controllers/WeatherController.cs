@@ -30,17 +30,26 @@ namespace LoginGoogle.Controllers
                     json = client.DownloadString(url);
                     WeatherInfo weatherInfo = (new JavaScriptSerializer()).Deserialize<WeatherInfo>(json);
                     ViewBag.Name = weatherInfo.name;
+                    //img
                     ViewBag.LinkIcon = "http://openweathermap.org/img/wn/" + weatherInfo.weather[0].icon + "@2x.png";
-                    ViewBag.WeatherMin = weatherInfo.weather[0].main.ToUpper();
                     ViewBag.CountryFlag = string.Format("https://www.countryflags.io/{0}/flat/64.png", weatherInfo.sys.country.ToLower());
-                    ViewBag.Temp = weatherInfo.main.temp;
+                    //Weather
+                    ViewBag.WeatherMin = weatherInfo.weather[0].main.ToUpper();
+                    ViewBag.Weather = weatherInfo.weather[0].description.ToUpper();
+                    //coord
                     ViewBag.X = weatherInfo.coord.lon.ToString(new CultureInfo("en-US"));
                     ViewBag.Y = weatherInfo.coord.lat.ToString(new CultureInfo("en-US"));
+                    //temprature
+                    ViewBag.Temp = weatherInfo.main.temp;
                     ViewBag.TempMax = weatherInfo.main.temp_max;
                     ViewBag.TempMin = weatherInfo.main.temp_min;
-                    ViewBag.CountryName = weatherInfo.sys.country;
-                    ViewBag.Weather = weatherInfo.weather[0].description.ToUpper();
+                    ViewBag.Humi = weatherInfo.main.humidity;
+                    ViewBag.Pressure = weatherInfo.main.pressure;
+                    //wind
                     ViewBag.WindSpeed = weatherInfo.wind.speed;
+                    ViewBag.WindDeg = weatherInfo.wind.deg;
+                    //Sys
+                    ViewBag.CountryName = weatherInfo.sys.country;
                     ViewBag.Clound = weatherInfo.clouds.all;
                     ViewBag.Timezone = weatherInfo.timezone;
                 }
